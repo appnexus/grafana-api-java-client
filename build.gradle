@@ -1,13 +1,14 @@
 plugins {
     id 'java'
-    id 'maven-publish'
+    id 'maven'
     id 'org.unbroken-dome.test-sets' version '1.3.2'
-    id "com.diffplug.gradle.spotless" version '3.3.0'
+    id 'com.diffplug.gradle.spotless' version '3.3.0'
+    id 'signing'
 }
 
 group = 'com.appnexus.grafana-client'
-
 description = """A simple java client for interacting with Grafana using a fluent interface"""
+version = '1.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -15,6 +16,7 @@ targetCompatibility = 1.8
 repositories {
     jcenter()
     mavenLocal()
+    mavenCentral()
 }
 
 ext {
@@ -41,20 +43,81 @@ dependencies {
 }
 
 task sourceJar(type: Jar) {
+    classifier = 'sources'
     from sourceSets.main.allJava
 }
 
-publishing {
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// Signature of artifacts
+signing {
+    sign configurations.archives
+}
+
+//ToDo: remove old way of publishing
+//publishing {
+//    repositories {
+//        mavenLocal()
+//    }
+//
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
+//
+//            artifacts {
+//                archives javadocJar, sourceJar
+//            }
+//        }
+//    }
+//}
+
+artifacts {
+    archives javadocJar, sourceJar
+}
+
+uploadArchives {
     repositories {
-        mavenLocal()
-    }
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
 
-            artifact sourceJar {
-                classifier "sources"
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+//                name 'Example Application'
+                packaging 'jar'
+//                description 'A application used as an example on how to set up
+//                pushing  its components to the Central Repository.'
+                url 'https://appnexus.github.io/grafana-api-java-client/'
+
+                scm {
+                    connection 'scm:git:https://github.com/appnexus/grafana-api-java-client.git'
+                    developerConnection 'scm:git:git@github.com:appnexus/grafana-api-java-client.git'
+                    url 'https://github.com/appnexus/grafana-api-java-client.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'stevesample'
+                        name 'Steve Sample'
+                        email 'steve.sample22@gmail.com'
+                    }
+                }
             }
         }
     }
