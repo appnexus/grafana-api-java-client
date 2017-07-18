@@ -45,7 +45,7 @@ task sourceJar(type: Jar) {
 }
 
 javadoc {
-    destinationDir = file("docs")
+//    destinationDir = file("docs")
 }
 
 publishing {
