@@ -90,8 +90,7 @@ DashboardMeta createdDashboardMeta = createDashboardTest(grafanaDashboard);
 
 ## Javadocs
 
-JavaDocs can be found in the docs directory. You can browse them 
-[here](https://appnexus.github.io/grafana-api-java-client/).
+Javadocs can be found [here](https://appnexus.github.io/grafana-api-java-client/).
 
 
 ## Contributing
