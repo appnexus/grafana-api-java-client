@@ -44,6 +44,10 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 
+javadoc {
+    destinationDir = file("docs")
+}
+
 publishing {
     repositories {
         mavenLocal()
