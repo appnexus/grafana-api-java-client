@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
 
+script: javadoc
+
 deploy:
   provider: pages
   local_dir: build/docs/javadoc
