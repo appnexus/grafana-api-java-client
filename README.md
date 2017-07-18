@@ -1,4 +1,5 @@
-# Grafana Client
+# Grafana Client [![Build Status](https://travis-ci.org/appnexus/grafana-api-java-client.svg?branch=master)](https://travis-ci.org/appnexus/grafana-api-java-client) 
+
 
 A simple java client for interacting with [Grafana](http://docs.grafana.org/) using a 
 fluent interface.
@@ -8,7 +9,7 @@ fluent interface.
 
 Simple Example:
 ```
-import com.appnexus.wsp.grafana.client.GrafanaClient;
+import com.appnexus.grafana.client.GrafanaClient;
 
 //Setup the client
 GrafanaConfiguration grafanaConfiguration =
@@ -33,7 +34,7 @@ grafanaClient.deleteDashboard(DASHBOARD_NAME);
 ```
 Here is a more complex example that sets up a Grafana dashboard with a panel and row: 
 ```
-import com.appnexus.wsp.grafana.client.GrafanaClient;
+import com.appnexus.grafana.client.GrafanaClient;
 
 //Setup the client
 GrafanaConfiguration grafanaConfiguration =

@@ -5,9 +5,9 @@ plugins {
     id "com.diffplug.gradle.spotless" version '3.3.0'
 }
 
-group = 'com.appnexus.common'
+group = 'com.appnexus.grafana-client'
 
-description = """Grafana Client"""
+description = """A simple java client for interacting with Grafana using a fluent interface"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -42,10 +42,6 @@ dependencies {
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
-}
-
-javadoc {
-    destinationDir = file("docs")
 }
 
 publishing {

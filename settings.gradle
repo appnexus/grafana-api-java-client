@@ -6,5 +6,5 @@
  * in the user guide at https://docs.gradle.org/3.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = "grafana-client"
+rootProject.name = "grafana-api-java-client"
 
