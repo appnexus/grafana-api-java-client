@@ -1,6 +1,8 @@
 /* Licensed under Apache-2.0 */
 package com.appnexus.common.grafana.client;
 
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+
 import com.appnexus.common.grafana.client.models.AlertNotification;
 import com.appnexus.common.grafana.client.models.DashboardMeta;
 import com.appnexus.common.grafana.client.models.DashboardPanelAlert;
@@ -14,14 +16,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+import java.io.IOException;
+import java.util.List;
 import okhttp3.OkHttpClient;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
-
-import java.io.IOException;
-import java.util.List;
 
 public class GrafanaClient {
 

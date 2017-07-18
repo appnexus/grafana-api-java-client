@@ -1,6 +1,8 @@
 /* Licensed under Apache-2.0 */
 package com.appnexus.common.grafana.client;
 
+import static org.junit.Assert.fail;
+
 import com.appnexus.common.grafana.client.models.AlertNotification;
 import com.appnexus.common.grafana.client.models.Dashboard;
 import com.appnexus.common.grafana.client.models.DashboardMeta;
@@ -18,15 +20,13 @@ import com.appnexus.common.grafana.client.models.DashboardRow;
 import com.appnexus.common.grafana.client.models.GrafanaDashboard;
 import com.appnexus.common.grafana.configuration.GrafanaConfiguration;
 import com.appnexus.common.grafana.exceptions.GrafanaException;
-import org.junit.After;
-import static org.junit.Assert.fail;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /** To run this integration test a valid API key, host and data source must be added */
 public class GrafanaClientDashboardIntegrationTest {
