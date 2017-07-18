@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.unbroken-dome.test-sets' version '1.3.2'
+    id "com.diffplug.gradle.spotless" version '3.3.0'
+}
+
+group = 'com.appnexus.common'
+
+description = """Grafana Client"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+ext {
+    junitVersion = '4.12'
+    jacksonVersion = '2.8.8'
+    lombokVersion = '1.16.14'
+    retrofitVersion = '2.2.0'
+}
+
+testSets {
+    integrationTest { dirName = 'integration-test' }
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofitVersion
+    compile group: 'com.squareup.retrofit2', name: 'converter-jackson', version: retrofitVersion
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        licenseHeader '/* Licensed under Apache-2.0 */'
+    }
+}
