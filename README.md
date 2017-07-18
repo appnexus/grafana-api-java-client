@@ -1,4 +1,5 @@
-# Grafana Client
+# Grafana Client [![Build Status](https://travis-ci.org/appnexus/grafana-api-java-client.svg?branch=master)](https://travis-ci.org/appnexus/grafana-api-java-client) 
+
 
 A simple java client for interacting with [Grafana](http://docs.grafana.org/) using a 
 fluent interface.
