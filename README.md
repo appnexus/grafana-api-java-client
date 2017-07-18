@@ -89,7 +89,7 @@ DashboardMeta createdDashboardMeta = createDashboardTest(grafanaDashboard);
 
 ## Javadocs
 
-Documentation can be found at the [Java Client Github Project Page](http://appnexus.github.io/grafanaclient/).
+JavaDocs can be found in the docs directory. 
 
 
 ## Contributing
