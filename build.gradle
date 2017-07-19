@@ -53,31 +53,16 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-// Signature of artifacts
 signing {
     sign configurations.archives
 }
 
-//ToDo: remove old way of publishing
-//publishing {
-//    repositories {
-//        mavenLocal()
-//    }
-//
-//    publications {
-//        mavenJava(MavenPublication) {
-//            from components.java
-//
-//            artifacts {
-//                archives javadocJar, sourceJar
-//            }
-//        }
-//    }
-//}
-
 artifacts {
     archives javadocJar, sourceJar
 }
+
+def ossrhUsername=project.properties['ossrhUsername'] ?: ''
+def ossrhPassword=project.properties['ossrhPassword'] ?: ''
 
 uploadArchives {
     repositories {
