@@ -122,5 +122,5 @@ spotless {
     }
 }
 
-closeAndReleaseRepository.dependsOn uploadArchives
+closeRepository.dependsOn uploadArchives
 afterReleaseBuild.dependsOn closeAndReleaseRepository
