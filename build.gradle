@@ -56,7 +56,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-if (project.hasProperty('sign')) {
+if (project.hasProperty('signing.keyId')) {
     signing {
         sign configurations.archives
     }
@@ -121,3 +121,6 @@ spotless {
         licenseHeader '/* Licensed under Apache-2.0 */'
     }
 }
+
+closeAndPromoteRepository.dependsOn uploadArchives
+afterReleaseBuild.dependsOn closeAndPromoteRepository
