@@ -113,6 +113,7 @@ uploadArchives {
 nexusStaging {
     username = ossrhUsername
     password = ossrhPassword
+    packageGroup = 'com.appnexus'
 }
 
 spotless {
