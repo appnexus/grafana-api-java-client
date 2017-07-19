@@ -4,6 +4,7 @@ plugins {
     id 'org.unbroken-dome.test-sets' version '1.3.2'
     id 'com.diffplug.gradle.spotless' version '3.3.0'
     id 'signing'
+    id 'io.codearte.nexus-staging'
 }
 
 group = 'com.appnexus.grafana-client'
@@ -92,11 +93,10 @@ uploadArchives {
             }
 
             pom.project {
-//                name 'Example Application'
+                name project.name
                 packaging 'jar'
-//                description 'A application used as an example on how to set up
-//                pushing  its components to the Central Repository.'
-                url 'https://appnexus.github.io/grafana-api-java-client/'
+                description project.description
+                url 'https://github.com/appnexus/grafana-api-java-client'
 
                 scm {
                     connection 'scm:git:https://github.com/appnexus/grafana-api-java-client.git'
@@ -121,6 +121,11 @@ uploadArchives {
             }
         }
     }
+}
+
+nexusStaging {
+    username = ossrhUser
+    password = ossrhPassword
 }
 
 spotless {
