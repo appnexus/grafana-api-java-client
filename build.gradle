@@ -27,6 +27,9 @@ ext {
     retrofitVersion = '2.2.0'
 }
 
+def ossrhUsername=project.properties['ossrhUsername'] ?: ''
+def ossrhPassword=project.properties['ossrhPassword'] ?: ''
+
 testSets {
     integrationTest { dirName = 'integration-test' }
 }
@@ -53,16 +56,15 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-signing {
-    sign configurations.archives
+if (project.hasProperty('sign')) {
+    signing {
+        sign configurations.archives
+    }
 }
 
 artifacts {
     archives javadocJar, sourceJar
 }
-
-def ossrhUsername=project.properties['ossrhUsername'] ?: ''
-def ossrhPassword=project.properties['ossrhPassword'] ?: ''
 
 uploadArchives {
     repositories {
