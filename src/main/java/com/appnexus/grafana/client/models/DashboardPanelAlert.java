@@ -22,7 +22,8 @@ public class DashboardPanelAlert {
   public enum AlertState {
     ALERTING("alerting"),
     NO_DATA("no_data"),
-    KEEP_LAST_STATE("keep_last_state");
+    KEEP_LAST_STATE("keep_state"),
+    OK("ok");
     private final String value;
 
     AlertState(String s) {
