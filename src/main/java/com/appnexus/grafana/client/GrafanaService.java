@@ -7,6 +7,7 @@ import com.appnexus.grafana.client.models.DashboardPanelAlert;
 import com.appnexus.grafana.client.models.DashboardSuccessfulDelete;
 import com.appnexus.grafana.client.models.GrafanaDashboard;
 import com.appnexus.grafana.client.models.GrafanaMessage;
+import com.appnexus.grafana.client.models.GrafanaSearch;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,11 +17,13 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GrafanaService {
   String GRAFANA_DASHBOARDS = "api/dashboards/db/";
   String GRAFANA_NOTIFICATIONS = "api/alert-notifications/";
   String GRAFANA_ALERTS = "api/alerts/";
+  String GRAFANA_SEARCH = "api/search/";
 
   String AUTHORIZATION = "Authorization";
 
@@ -63,4 +66,13 @@ public interface GrafanaService {
   @GET(GRAFANA_ALERTS + "{id}")
   Call<DashboardPanelAlert> getAlert(
       @Header(AUTHORIZATION) String authorization, @Path("id") Integer id);
+
+  // Search
+  @GET(GRAFANA_SEARCH)
+  Call<List<GrafanaSearch>> search(
+      @Header(AUTHORIZATION) String authorization,
+      @Query("query") String query,
+      @Query("tag") String tag,
+      @Query("starred") Boolean starred,
+      @Query("tagcloud") Boolean tagcloud);
 }
