@@ -7,7 +7,7 @@ import com.appnexus.grafana.client.models.DashboardPanelAlert;
 import com.appnexus.grafana.client.models.DashboardSuccessfulDelete;
 import com.appnexus.grafana.client.models.GrafanaDashboard;
 import com.appnexus.grafana.client.models.GrafanaMessage;
-import com.appnexus.grafana.client.models.GrafanaSearch;
+import com.appnexus.grafana.client.models.GrafanaSearchResult;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -69,7 +69,7 @@ public interface GrafanaService {
 
   // Search
   @GET(GRAFANA_SEARCH)
-  Call<List<GrafanaSearch>> search(
+  Call<List<GrafanaSearchResult>> search(
       @Header(AUTHORIZATION) String authorization,
       @Query("query") String query,
       @Query("tag") String tag,

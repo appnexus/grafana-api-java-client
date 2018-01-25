@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(fluent = true)
-public class GrafanaSearch {
+public class GrafanaSearchResult {
   Long id;
   String title;
   String uri;

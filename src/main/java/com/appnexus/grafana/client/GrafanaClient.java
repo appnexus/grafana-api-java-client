@@ -9,7 +9,7 @@ import com.appnexus.grafana.client.models.DashboardPanelAlert;
 import com.appnexus.grafana.client.models.DashboardSuccessfulDelete;
 import com.appnexus.grafana.client.models.GrafanaDashboard;
 import com.appnexus.grafana.client.models.GrafanaMessage;
-import com.appnexus.grafana.client.models.GrafanaSearch;
+import com.appnexus.grafana.client.models.GrafanaSearchResult;
 import com.appnexus.grafana.configuration.GrafanaConfiguration;
 import com.appnexus.grafana.exceptions.GrafanaDashboardCouldNotDeleteException;
 import com.appnexus.grafana.exceptions.GrafanaDashboardDoesNotExistException;
@@ -276,10 +276,10 @@ public class GrafanaClient {
     }
   }
 
-  public List<GrafanaSearch> search(String query, String tag, Boolean starred, Boolean tagcloud)
+  public List<GrafanaSearchResult> search(String query, String tag, Boolean starred, Boolean tagcloud)
       throws GrafanaException, IOException {
 
-    Response<List<GrafanaSearch>> response =
+    Response<List<GrafanaSearchResult>> response =
         service.search(apiKey, query, tag, starred, tagcloud).execute();
 
     if (response.isSuccessful()) {
