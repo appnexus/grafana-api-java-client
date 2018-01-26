@@ -276,7 +276,8 @@ public class GrafanaClient {
     }
   }
 
-  public List<GrafanaSearchResult> search(String query, String tag, Boolean starred, Boolean tagcloud)
+  public List<GrafanaSearchResult> search(
+      String query, String tag, Boolean starred, Boolean tagcloud)
       throws GrafanaException, IOException {
 
     Response<List<GrafanaSearchResult>> response =
