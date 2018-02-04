@@ -3,13 +3,7 @@ package com.appnexus.grafana.client;
 
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 
-import com.appnexus.grafana.client.models.AlertNotification;
-import com.appnexus.grafana.client.models.DashboardMeta;
-import com.appnexus.grafana.client.models.DashboardPanelAlert;
-import com.appnexus.grafana.client.models.DashboardSuccessfulDelete;
-import com.appnexus.grafana.client.models.GrafanaDashboard;
-import com.appnexus.grafana.client.models.GrafanaMessage;
-import com.appnexus.grafana.client.models.GrafanaSearchResult;
+import com.appnexus.grafana.client.models.*;
 import com.appnexus.grafana.configuration.GrafanaConfiguration;
 import com.appnexus.grafana.exceptions.GrafanaDashboardCouldNotDeleteException;
 import com.appnexus.grafana.exceptions.GrafanaDashboardDoesNotExistException;
@@ -283,6 +277,42 @@ public class GrafanaClient {
     Response<List<GrafanaSearchResult>> response =
         service.search(apiKey, query, tag, starred, tagcloud).execute();
 
+    if (response.isSuccessful()) {
+      return response.body();
+    } else {
+      throw GrafanaException.withErrorBody(response.errorBody());
+    }
+  }
+
+  public Datasource getDatasource(int id) throws GrafanaException, IOException {
+    Response<Datasource> response = service.getDataSource(apiKey, id).execute();
+    if (response.isSuccessful()) {
+      return response.body();
+    } else {
+      throw GrafanaException.withErrorBody(response.errorBody());
+    }
+  }
+
+  public Datasource getDatasource(String name) throws GrafanaException, IOException {
+    Response<Datasource> response = service.getDataSource(apiKey, name).execute();
+    if (response.isSuccessful()) {
+      return response.body();
+    } else {
+      throw GrafanaException.withErrorBody(response.errorBody());
+    }
+  }
+
+  public List<Datasource> getDatasources() throws GrafanaException, IOException {
+    Response<List<Datasource>> response = service.getDataSources(apiKey).execute();
+    if (response.isSuccessful()) {
+      return response.body();
+    } else {
+      throw GrafanaException.withErrorBody(response.errorBody());
+    }
+  }
+
+  public DatasourceCreationResult createDatasource(Datasource ds) throws GrafanaException, IOException {
+    Response<DatasourceCreationResult> response = service.createDataSource(apiKey, ds).execute();
     if (response.isSuccessful()) {
       return response.body();
     } else {
