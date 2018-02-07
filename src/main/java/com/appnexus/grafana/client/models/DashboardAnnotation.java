@@ -11,6 +11,8 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 @Accessors(fluent = true)
 abstract public class DashboardAnnotation extends FlexibleSchemaComponent {
+  final static String DATASOURCE_FIELD_NAME = "datasource";
+
   private String name;
   private String datasource;
   private Boolean enable;

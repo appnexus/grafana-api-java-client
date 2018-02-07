@@ -15,5 +15,7 @@ import java.util.List;
 @Accessors(fluent = true)
 @JsonDeserialize(using = DashboardAnnotationListDeserializer.class)
 public class DashboardAnnotationList extends FlexibleSchemaComponent {
+  final static String LIST_FIELD_NAME = "list";
+
   private List<DashboardAnnotation> list;
 }
