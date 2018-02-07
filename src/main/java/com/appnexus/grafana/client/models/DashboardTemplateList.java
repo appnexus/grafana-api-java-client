@@ -1,20 +1,25 @@
 /* Licensed under Apache-2.0 */
 package com.appnexus.grafana.client.models;
 
-import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardTemplateList {
-  DashboardTemplateListCurrent current;
-  Integer hide;
-  Boolean includeAll;
-  String label;
-  Boolean multi;
-  String name;
-  List<DashboardTemplateListOption> options;
-  String query;
-  String type;
+public class DashboardTemplateList extends FlexibleSchemaComponent {
+  private DashboardTemplateListCurrent current;
+  private Integer hide;
+  private Boolean includeAll;
+  private String label;
+  private Boolean multi;
+  private String name;
+  private List<DashboardTemplateListOption> options;
+  private String query;
+  private String type;
 }

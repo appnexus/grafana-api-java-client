@@ -4,24 +4,25 @@ package com.appnexus.grafana.client.models;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@NoArgsConstructor
 @Accessors(fluent = true)
-public class DashboardPanelAlertCondition extends FlexibleSchemaComponent {
-  private DashboardPanelAlertConditionEvaluator evaluator;
-  private DashboardPanelAlertConditionQuery query;
-  private DashboardPanelAlertConditionReducer reducer;
-  private DashboardPanelAlertConditionOperator operator;
+public class NativeDashboardAnnotation extends DashboardAnnotation {
+  final static String DATASOURCE_NAME = "-- Grafana --";
+
   private Type type;
 
+  public NativeDashboardAnnotation() {
+    datasource(DATASOURCE_NAME);
+  }
+
   public enum Type {
-    QUERY("query");
+    DASHBOARD("dashboard"),
+    TAGS("tags");
     private final String value;
 
     Type(String s) {

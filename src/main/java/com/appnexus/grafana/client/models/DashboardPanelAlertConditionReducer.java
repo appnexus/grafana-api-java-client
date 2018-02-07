@@ -2,16 +2,20 @@
 package com.appnexus.grafana.client.models;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
-@Accessors(fluent = true)
-public class DashboardPanelAlertConditionReducer {
+import java.util.List;
 
-  Type type;
-  List<String> params;
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Accessors(fluent = true)
+public class DashboardPanelAlertConditionReducer extends FlexibleSchemaComponent {
+  private Type type;
+  private List<String> params;
 
   public enum Type {
     MIN("min"),

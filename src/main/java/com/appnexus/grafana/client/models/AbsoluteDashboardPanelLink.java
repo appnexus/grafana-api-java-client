@@ -6,12 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardTemplate extends FlexibleSchemaComponent {
-  private List<DashboardTemplateList> list;
+public class AbsoluteDashboardPanelLink extends DashboardPanelLink {
+  private String url;
 }

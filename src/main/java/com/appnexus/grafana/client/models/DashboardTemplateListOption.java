@@ -2,12 +2,16 @@
 package com.appnexus.grafana.client.models;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardTemplateListOption {
-  Boolean selected;
-  String text;
-  String value;
+public class DashboardTemplateListOption extends FlexibleSchemaComponent {
+  private Boolean selected;
+  private String text;
+  private String value;
 }

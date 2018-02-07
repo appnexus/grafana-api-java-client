@@ -10,8 +10,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -21,26 +19,23 @@ import java.util.List;
     include = JsonTypeInfo.As.PROPERTY,
     property = "type")
 @JsonSubTypes({
-    @Type(value = GraphDashboardPanel.class, name = "graph"),
-    @Type(value = AlertListDashboardPanel.class, name = "alertlist")
+    @Type(value = AbsoluteDashboardPanelLink.class, name = "absolute"),
+    @Type(value = RelativeDashboardPanelLink.class, name = "dashboard")
 })
-abstract public class DashboardPanel extends FlexibleSchemaComponent {
-  private Boolean editable;
-  private Integer id;
-  private Integer span;
-  private String height;
-  private String title;
-  private String description;
-  private List<DashboardPanelLink> links;
+abstract public class DashboardPanelLink extends FlexibleSchemaComponent {
   private Type type;
+  private Boolean keepTime;
+  private String params;
+  private Boolean targetBlank;
+  private String title;
 
   public enum Type {
-    GRAPH("graph"),
-    ALERT_LIST("alertlist");
+    DASHBOARD("dashboard"),
+    ABSOLUTE("absolute");
     private final String value;
 
     Type(String s) {
-      value = s;
+        value = s;
     }
 
     @JsonValue

@@ -3,15 +3,18 @@ package com.appnexus.grafana.client.models;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @NoArgsConstructor
 @Accessors(fluent = true)
-public class DashboardPanelAlertConditionOperator {
-
-  Type type;
+public class DashboardPanelAlertConditionOperator extends FlexibleSchemaComponent {
+  private Type type;
 
   public enum Type {
     AND("and"),

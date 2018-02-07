@@ -12,6 +12,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardTemplate extends FlexibleSchemaComponent {
-  private List<DashboardTemplateList> list;
+public class GraphiteDashboardAnnotation extends DashboardAnnotation {
+  private List<String> tags;
+  private String target;
 }

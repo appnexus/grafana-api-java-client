@@ -3,13 +3,11 @@ package com.appnexus.grafana.client.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @Accessors(fluent = true)
-public class GrafanaMessage extends FlexibleSchemaComponent {
-  private String message;
+public class RelativeDashboardPanelLink extends DashboardPanelLink {
+  private String dashboard;
 }
