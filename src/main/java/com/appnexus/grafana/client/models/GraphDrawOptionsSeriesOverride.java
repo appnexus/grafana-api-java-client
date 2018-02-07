@@ -1,7 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.appnexus.grafana.client.models;
 
-import com.appnexus.grafana.client.models.GraphDashboardPanel.NullPointMode;
+import com.appnexus.grafana.client.models.DashboardPanel.NullPointMode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
