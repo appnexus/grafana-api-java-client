@@ -311,7 +311,8 @@ public class GrafanaClient {
     }
   }
 
-  public DatasourceCreationResult createDatasource(Datasource ds) throws GrafanaException, IOException {
+  public DatasourceCreationResult createDatasource(Datasource ds)
+      throws GrafanaException, IOException {
     Response<DatasourceCreationResult> response = service.createDataSource(apiKey, ds).execute();
     if (response.isSuccessful()) {
       return response.body();

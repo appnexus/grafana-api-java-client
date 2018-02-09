@@ -2,7 +2,6 @@
 package com.appnexus.grafana.client;
 
 import com.appnexus.grafana.client.models.*;
-
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -67,25 +66,16 @@ public interface GrafanaService {
 
   // Datasources
   @GET(GRAFANA_DATASOURCES)
-  Call<List<Datasource>> getDataSources(
-      @Header(AUTHORIZATION) String authorization
-  );
+  Call<List<Datasource>> getDataSources(@Header(AUTHORIZATION) String authorization);
 
   @POST(GRAFANA_DATASOURCES)
   Call<DatasourceCreationResult> createDataSource(
-      @Header(AUTHORIZATION) String authorization,
-      @Body Datasource ds
-  );
+      @Header(AUTHORIZATION) String authorization, @Body Datasource ds);
 
   @GET(GRAFANA_DATASOURCES + "/{id}")
-  Call<Datasource> getDataSource(
-      @Header(AUTHORIZATION) String authorization,
-      @Query("id") int id
-  );
+  Call<Datasource> getDataSource(@Header(AUTHORIZATION) String authorization, @Query("id") int id);
 
   @GET(GRAFANA_DATASOURCES + "/{name}")
   Call<Datasource> getDataSource(
-      @Header(AUTHORIZATION) String authorization,
-      @Query("name") String name
-  );
+      @Header(AUTHORIZATION) String authorization, @Query("name") String name);
 }
