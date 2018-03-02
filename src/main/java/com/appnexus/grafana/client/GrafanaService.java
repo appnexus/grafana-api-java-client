@@ -6,12 +6,14 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import javax.xml.crypto.Data;
+
 public interface GrafanaService {
   String GRAFANA_DASHBOARDS = "api/dashboards/db/";
   String GRAFANA_NOTIFICATIONS = "api/alert-notifications/";
   String GRAFANA_ALERTS = "api/alerts/";
   String GRAFANA_SEARCH = "api/search/";
-  String GRAFANA_DATASOURCES = "api/datasources";
+  String GRAFANA_DATASOURCES = "api/datasources/";
 
   String AUTHORIZATION = "Authorization";
 
@@ -72,10 +74,20 @@ public interface GrafanaService {
   Call<DatasourceCreationResult> createDataSource(
       @Header(AUTHORIZATION) String authorization, @Body Datasource ds);
 
-  @GET(GRAFANA_DATASOURCES + "/{id}")
-  Call<Datasource> getDataSource(@Header(AUTHORIZATION) String authorization, @Query("id") int id);
+  @PUT(GRAFANA_DATASOURCES + "{id}")
+  Call<DatasourceCreationResult> updateDatasource(
+          @Header(AUTHORIZATION) String authorization, @Body Datasource ds, @Path("id") int id);
 
-  @GET(GRAFANA_DATASOURCES + "/{name}")
+  @GET(GRAFANA_DATASOURCES + "id/{name}")
+  Call<DatasourceIdResult> getDatasourceIdbyName(@Header(AUTHORIZATION) String authorization, @Path("name") String name);
+
+  @GET(GRAFANA_DATASOURCES + "{id}")
+  Call<Datasource> getDataSource(@Header(AUTHORIZATION) String authorization, @Path("id") int id);
+
+  @GET(GRAFANA_DATASOURCES + "name/{name}")
   Call<Datasource> getDataSource(
-      @Header(AUTHORIZATION) String authorization, @Query("name") String name);
+      @Header(AUTHORIZATION) String authorization, @Path("name") String name);
+
+  @DELETE(GRAFANA_DATASOURCES + "{id}")
+  Call<GrafanaMessage> deleteDatasource(@Header(AUTHORIZATION) String authorization, @Path("id") int id);
 }

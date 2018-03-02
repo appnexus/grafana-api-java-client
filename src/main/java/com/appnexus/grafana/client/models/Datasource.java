@@ -7,6 +7,8 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(fluent = true)
 public class Datasource {
+  int id;
+  int orgId;
   String name;
   boolean isDefault;
   String type;
