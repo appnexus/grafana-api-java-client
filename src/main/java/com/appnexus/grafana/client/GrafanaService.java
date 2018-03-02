@@ -6,8 +6,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-import javax.xml.crypto.Data;
-
 public interface GrafanaService {
   String GRAFANA_DASHBOARDS = "api/dashboards/db/";
   String GRAFANA_NOTIFICATIONS = "api/alert-notifications/";
@@ -76,10 +74,11 @@ public interface GrafanaService {
 
   @PUT(GRAFANA_DATASOURCES + "{id}")
   Call<DatasourceCreationResult> updateDatasource(
-          @Header(AUTHORIZATION) String authorization, @Body Datasource ds, @Path("id") int id);
+      @Header(AUTHORIZATION) String authorization, @Body Datasource ds, @Path("id") int id);
 
   @GET(GRAFANA_DATASOURCES + "id/{name}")
-  Call<DatasourceIdResult> getDatasourceIdbyName(@Header(AUTHORIZATION) String authorization, @Path("name") String name);
+  Call<DatasourceIdResult> getDatasourceIdbyName(
+      @Header(AUTHORIZATION) String authorization, @Path("name") String name);
 
   @GET(GRAFANA_DATASOURCES + "{id}")
   Call<Datasource> getDataSource(@Header(AUTHORIZATION) String authorization, @Path("id") int id);
@@ -89,5 +88,6 @@ public interface GrafanaService {
       @Header(AUTHORIZATION) String authorization, @Path("name") String name);
 
   @DELETE(GRAFANA_DATASOURCES + "{id}")
-  Call<GrafanaMessage> deleteDatasource(@Header(AUTHORIZATION) String authorization, @Path("id") int id);
+  Call<GrafanaMessage> deleteDatasource(
+      @Header(AUTHORIZATION) String authorization, @Path("id") int id);
 }
