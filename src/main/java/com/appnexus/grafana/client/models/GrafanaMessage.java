@@ -2,10 +2,14 @@
 package com.appnexus.grafana.client.models;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Accessors(fluent = true)
-public class GrafanaMessage {
-  String message;
+public class GrafanaMessage extends FlexibleSchemaComponent {
+  private String message;
 }

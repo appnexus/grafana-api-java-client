@@ -2,22 +2,26 @@
 package com.appnexus.grafana.client.models;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
-@Accessors(fluent = true)
-public class DashboardPanelAlert {
+import java.util.List;
 
-  List<DashboardPanelAlertCondition> conditions;
-  AlertState executionErrorState;
-  String frequency;
-  Integer handler;
-  String message;
-  String name;
-  AlertState noDataState;
-  List<AlertNotification> notifications;
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Accessors(fluent = true)
+public class DashboardPanelAlert extends FlexibleSchemaComponent {
+  private List<DashboardPanelAlertCondition> conditions;
+  private AlertState executionErrorState;
+  private String frequency;
+  private Integer handler;
+  private String message;
+  private String name;
+  private AlertState noDataState;
+  private List<AlertNotification> notifications;
 
   public enum AlertState {
     ALERTING("alerting"),

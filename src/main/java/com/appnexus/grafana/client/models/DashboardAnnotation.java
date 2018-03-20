@@ -13,18 +13,30 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardPanelAlertConditionReducer extends FlexibleSchemaComponent {
+public class DashboardAnnotation extends FlexibleSchemaComponent {
+  // common
+  private String name;
+  private String datasource;
+  private Boolean enable;
+  private Boolean hide;
+  private String iconColor;
+  private Integer builtIn;
+  private Integer showIn;
+  private Integer limit;
+  // BUILTIN
   private Type type;
-  private List<String> params;
+  // GRAPHITE
+  private List<String> tags;
+  private String target;
+
+  public DashboardAnnotation builtInDatasource() {
+    datasource = Datasource.BUILTIN_DATASOURCE_NAME;
+    return this;
+  }
 
   public enum Type {
-    MIN("min"),
-    MAX("max"),
-    AVG("avg"),
-    SUM("sum"),
-    COUNT("count"),
-    LAST("last"),
-    MEDIAN("median");
+    DASHBOARD("dashboard"),
+    TAGS("tags");
     private final String value;
 
     Type(String s) {

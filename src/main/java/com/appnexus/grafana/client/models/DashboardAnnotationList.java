@@ -12,6 +12,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Accessors(fluent = true)
-public class DashboardTemplate extends FlexibleSchemaComponent {
-  private List<DashboardTemplateList> list;
+public class DashboardAnnotationList extends FlexibleSchemaComponent {
+  private List<DashboardAnnotation> list;
 }
