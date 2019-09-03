@@ -1,29 +1,17 @@
 /* Licensed under Apache-2.0 */
 package com.appnexus.grafana.client;
 
-import com.appnexus.grafana.client.models.AlertNotification;
-import com.appnexus.grafana.client.models.DashboardMeta;
-import com.appnexus.grafana.client.models.DashboardPanelAlert;
-import com.appnexus.grafana.client.models.DashboardSuccessfulDelete;
-import com.appnexus.grafana.client.models.GrafanaDashboard;
-import com.appnexus.grafana.client.models.GrafanaMessage;
-import com.appnexus.grafana.client.models.GrafanaSearchResult;
+import com.appnexus.grafana.client.models.*;
 import java.util.List;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 public interface GrafanaService {
   String GRAFANA_DASHBOARDS = "api/dashboards/db/";
   String GRAFANA_NOTIFICATIONS = "api/alert-notifications/";
   String GRAFANA_ALERTS = "api/alerts/";
   String GRAFANA_SEARCH = "api/search/";
+  String GRAFANA_DATASOURCES = "api/datasources/";
 
   String AUTHORIZATION = "Authorization";
 
@@ -75,4 +63,31 @@ public interface GrafanaService {
       @Query("tag") String tag,
       @Query("starred") Boolean starred,
       @Query("tagcloud") Boolean tagcloud);
+
+  // Datasources
+  @GET(GRAFANA_DATASOURCES)
+  Call<List<Datasource>> getDataSources(@Header(AUTHORIZATION) String authorization);
+
+  @POST(GRAFANA_DATASOURCES)
+  Call<DatasourceCreationResult> createDataSource(
+      @Header(AUTHORIZATION) String authorization, @Body Datasource ds);
+
+  @PUT(GRAFANA_DATASOURCES + "{id}")
+  Call<DatasourceCreationResult> updateDatasource(
+      @Header(AUTHORIZATION) String authorization, @Body Datasource ds, @Path("id") int id);
+
+  @GET(GRAFANA_DATASOURCES + "id/{name}")
+  Call<DatasourceIdResult> getDatasourceIdbyName(
+      @Header(AUTHORIZATION) String authorization, @Path("name") String name);
+
+  @GET(GRAFANA_DATASOURCES + "{id}")
+  Call<Datasource> getDataSource(@Header(AUTHORIZATION) String authorization, @Path("id") int id);
+
+  @GET(GRAFANA_DATASOURCES + "name/{name}")
+  Call<Datasource> getDataSource(
+      @Header(AUTHORIZATION) String authorization, @Path("name") String name);
+
+  @DELETE(GRAFANA_DATASOURCES + "{id}")
+  Call<GrafanaMessage> deleteDatasource(
+      @Header(AUTHORIZATION) String authorization, @Path("id") int id);
 }
