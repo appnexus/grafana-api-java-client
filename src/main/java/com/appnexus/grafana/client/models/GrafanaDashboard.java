@@ -9,4 +9,5 @@ import lombok.experimental.Accessors;
 public class GrafanaDashboard {
   DashboardMeta meta;
   Dashboard dashboard;
+  Integer folderId;
 }

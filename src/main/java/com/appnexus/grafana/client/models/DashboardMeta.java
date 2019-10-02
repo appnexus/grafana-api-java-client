@@ -18,4 +18,7 @@ public class DashboardMeta {
   String updatedBy;
   String createdBy;
   Integer version;
+  Integer folderId;
+  String folderUrl;
+  String folderTitle;
 }
